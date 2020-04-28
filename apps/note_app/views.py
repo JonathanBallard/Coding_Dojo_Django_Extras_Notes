@@ -56,7 +56,22 @@ def deleteNote(request, id):
 
 
 
+# AJAX Routes
+def submit(request):
+    
+    noteF = NoteForm(request.POST)
+    if noteF.is_valid():
+        note = Note.objects.create(content=request.POST['content'], title=request.POST['title'])
+        note.save()
+    else:
+        print('invalid note')
 
+    context = {
+        'notes' : Note.objects.all(),
+
+    }
+
+    return render(request, 'note_app/partials/notes_index.html', context)
 
 
 

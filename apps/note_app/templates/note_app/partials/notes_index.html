@@ -1,0 +1,10 @@
+
+<div class="note">
+    {% for note in notes %}
+        <div class="bg-dark m-2 d-inline-block noteBox col-xl-4 border-primary border">
+            <h2>{{ note.title }}</h2>
+            <hr>
+            <p>{{ note.content }}</p>
+        </div>
+    {% endfor %}
+</div>

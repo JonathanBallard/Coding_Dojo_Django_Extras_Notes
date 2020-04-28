@@ -22,6 +22,15 @@
 
     <script src="{% static 'js/script.js' %}"></script>
 
+
+
+
+
+
+
+
+
+
     <title>Posts</title>
 </head>
 <body>
@@ -54,7 +63,8 @@
 
 
 <h1 class="display-4">New Note</h1>
-    <form action="/notes/register/" method="POST">
+
+    <form class="form" action="/notes/submit/" method="POST">
         {% csrf_token %}
 
         {{ noteForm.as_p }}
@@ -68,9 +78,50 @@
 
 
 
+<div class="notes"></div>
 
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
 
 </body>
+
+
+<script>
+
+    $('.form').submit(function(e){
+        e.preventDefault();
+        console.log('stuff')
+        $.ajax({
+            url: '/notes/submit/',
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function(serverResponse) {
+                console.log('Received from server', serverResponse)
+                $('.notes').html(serverResponse)
+            }
+        })
+
+    })
+    $(this).trigger('reset')
+
+</script>
+
+
+
+
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
