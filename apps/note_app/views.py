@@ -68,6 +68,7 @@ def submit(request):
 
     context = {
         'notes' : Note.objects.all(),
+        'thisNote' : note,
 
     }
 
