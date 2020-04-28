@@ -37,24 +37,24 @@
 
 <h1 class="display-4">Display Notes</h1>
     {% for note in all_notes %}
-    <div class="m-2 d-inline-block noteBox col-xl-4 border-primary border">
-        {{ note.content }}
+        <div class="m-2 d-inline-block noteBox col-xl-4 border-primary border">
+            {{ note.content }}
 
-    </div>
+        </div>
     {% endfor %}
 
 
 
 
 <h1 class="display-4">New Note</h1>
-<form action="/notes/register/" method="POST">
-    {% csrf_token %}
+    <form action="/notes/register/" method="POST">
+        {% csrf_token %}
 
-    {{ noteForm.as_p }}
+        {{ noteForm.as_p }}
 
-    <input type="submit" value="Submit New Note">
+        <input type="submit" value="Submit New Note">
 
-</form>
+    </form>
 
 
 </div>
