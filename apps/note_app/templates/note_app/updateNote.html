@@ -22,55 +22,32 @@
 
     <script src="{% static 'js/script.js' %}"></script>
 
-    <title>Posts</title>
+    <title>Update</title>
 </head>
 <body>
 
+
+
 <div class="container">
-    <h1 class="display-3">Notes</h1>
+    <h1 class="display-1">Update Note</h1>
+
+    <h2>{{ thisNote.title}}</h2>
+    <p>{{ thisNote.content}}</p>
 
 
-
-
-
-
-
-<h1 class="display-4">Display Notes</h1>
-    {% for note in all_notes %}
-        <div class="bg-dark m-2 d-inline-block noteBox col-xl-4 border-primary border">
-            <div class="bg-dark text-warning">
-                <h2>{{ note.title }}</h2>
-            </div>
-            <hr>
-            <p class="text-lead text-light" >{{ note.content }}</p>
-
-            <p><a class="d-inline-block btn btn-lg btn-light text-danger my-2" href="/notes/updateRender/{{ note.id }}">Update</a></p>
-            <p><a class="d-inline-block btn btn-lg btn-light text-danger my-2" href="/notes/delete/{{ note.id }}">Delete</a></p>
-
-        </div>
-    {% endfor %}
-
-
-
-
-<h1 class="display-4">New Note</h1>
-    <form action="/notes/register/" method="POST">
+    
+    <form class="form" action="/notes/update/{{ thisNote.id }}" method="POST">
         {% csrf_token %}
 
-        {{ noteForm.as_p }}
+        <div class="form-group">
+            <label for="content">Content</label>
+            <input class="form-control" type="text" name="content" value="{{ thisNote.content }}">
+        </div>
 
-        <input type="submit" value="Submit New Note">
-
+        <input type="submit" value="Update">
     </form>
 
-
 </div>
-
-
-
-
-
-
 
 </body>
 </html>

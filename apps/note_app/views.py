@@ -32,3 +32,41 @@ def register(request):
 
     return redirect('/notes/')
 
+def update(request, id):
+    thisNote = Note.objects.get(id=id)
+
+    context = {
+        'thisNote' : thisNote,
+
+    }
+
+    return render(request, 'note_app/updateNote.html', context)
+
+def updateNote(request,id):
+    thisNote = Note.objects.get(id=id)
+    thisNote.content = request.POST['content']
+    thisNote.save()
+    return redirect('/notes/')
+
+
+def deleteNote(request, id):
+    thisNote = Note.objects.get(id=id)
+    thisNote.delete()
+    return redirect('/notes/')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
